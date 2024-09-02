@@ -87,14 +87,23 @@ WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 #     }
 # }
 
-if "django_db" in environ:
-    database_secret = environ.get("django_db")
-    db_url = json.loads(database_secret)["DATABASE_URL"]
-    DATABASES = {"default": dj_database_url.parse(db_url)}
-else:
-    DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
+# if "DATABASE_SECRET" in environ:
+#     database_secret = environ.get("DATABASE_SECRET")
+#     db_url = json.loads(database_secret)["DATABASE_URL"]
+#     DATABASES = {"default": dj_database_url.parse(db_url)}
+# else:
+#     DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
 
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django-db',
+        'USER': 'postgres',
+        'PASSWORD': 'gestro123',
+        'HOST': 'django-db.cdyimc8acuid.ap-south-1.rds.amazonaws.com',  # e.g., mydb.xxxxxxxx.us-east-1.rds.amazonaws.com
+        'PORT': '5432',
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 

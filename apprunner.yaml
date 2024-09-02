@@ -1,14 +1,39 @@
 version: 1.0
-runtime: python3
+
+runtime:
+  runtime: python3  # Specify the runtime environment
+
 build:
-  commands:
-    build:
-      - pip install -r requirements.txt
-run:
-  runtime-version: 3.8.16
-  command: sh startup.sh
-  network:
-    port: 8000
-  secrets:
-    - name: django_db
-      value-from: "arn:aws:secretsmanager:ap-south-1:994417237876:secret:django_db-g1My8B"
+  buildCommand: pip install -r requirements.txt  # Install dependencies
+  runCommand: |
+    python manage.py migrate  # Apply migrations
+    python manage.py collectstatic --noinput  # Collect static files
+    gunicorn logistics_project.wsgi:application --bind 0.0.0.0:8000  # Start the Gunicorn server
+
+network:
+  port: 8000  # Specify the port that your application listens on
+
+environment:
+  variables:
+    DJANGO_SETTINGS_MODULE: djangoProject1.settings  # Specify the settings module
+    SECRET_KEY: tnapp0568  # Set your Django secret key
+    DEBUG: "False"  # Disable debug mode in production
+    ALLOWED_HOSTS: "*"  # Update as needed
+    DATABASE_URL: postgres://postgres:gestro123@django-db.cdyimc8acuid.ap-south-1.rds.amazonaws.com:5432/django-db  # RDS PostgreSQL connection string
+
+autoScaling:
+  minConcurrency: 5  # Minimum number of concurrent requests per instance
+  maxConcurrency: 100  # Maximum number of concurrent requests per instance
+  targetConcurrency: 50  # Target concurrency for scaling
+
+healthCheckConfiguration:
+  protocol: HTTP
+  path: /
+  intervalSeconds: 30
+  timeoutSeconds: 5
+  healthyThreshold: 2
+  unhealthyThreshold: 5
+
+instanceConfiguration:
+  cpu: 1024  # 1 vCPU
+  memory: 2048  # 2 GB RAM
