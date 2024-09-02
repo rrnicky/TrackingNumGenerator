@@ -5,7 +5,10 @@ build:
     build:
       - pip install -r requirements.txt
 run:
-  runtime-version: 3.7
+  runtime-version: 3.8.16
   command: sh startup.sh
   network:
     port: 8000
+  secrets:
+    - name: django_db
+      value-from: "arn:aws:secretsmanager:ap-south-1:994417237876:secret:django_db-g1My8B"
