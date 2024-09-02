@@ -1,43 +1,11 @@
 version: 1.0
-
-# Define the runtime environment
-runtime: python-3.8
-
-# Build section: Here you can specify build commands
+runtime: python3
 build:
   commands:
-    # Install dependencies from requirements.txt
-    - pip install -r requirements.txt
-    # Collect static files
-    - python manage.py collectstatic --noinput
-    # Apply database migrations
-    - python manage.py migrate
-
-# Start section: Here you can specify the start command to launch your application
+    build:
+      - pip install -r requirements.txt
 run:
-  # Command to run the Django development server or a WSGI server like Gunicorn
+  runtime-version: 3.8.16
   command: gunicorn djangoProject1.wsgi:application --bind 0.0.0.0:8000
-
-# Environment variables needed by the application
-environment:
-  variables:
-    DJANGO_SECRET_KEY: 'tnapp0568'
-    DJANGO_DEBUG: 'False'
-    DJANGO_ALLOWED_HOSTS: '*'
-    DATABASE_URL: 'postgres://postgres:gestro123@django-db.cdyimc8acuid.ap-south-1.rds.amazonaws.com:5432/django-db'
-    # Any other environment variables required by your application
-
-# Optional: Add health check configuration (to ensure App Runner checks if the app is healthy)
-healthcheck:
-  path: /health
-  interval: 10
-  timeout: 5
-  healthy_threshold: 3
-  unhealthy_threshold: 3
-
-# Optional: Add auto-scaling configuration (for scaling up and down based on traffic)
-autoscaling:
-  min_instances: 1
-  max_instances: 10
-
-
+  network:
+    port: 8000
