@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-zs#j%t4b)k6!_gxmf*f%wx51@p%hw0)!ju1^z*9(k5-y-nhr8^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".awsapprunner.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'trackNumGenerator.apps.TrackingappConfig'
+    'trackNumGenerator'
 ]
 
 MIDDLEWARE = [
@@ -86,13 +86,6 @@ WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-# if "DATABASE_SECRET" in environ:
-#     database_secret = environ.get("DATABASE_SECRET")
-#     db_url = json.loads(database_secret)["DATABASE_URL"]
-#     DATABASES = {"default": dj_database_url.parse(db_url)}
-# else:
-#     DATABASES = {"default": dj_database_url.parse("sqlite:///db.sqlite3")}
 
 DATABASES = {
     'default': {
