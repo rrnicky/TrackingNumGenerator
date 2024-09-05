@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-zs#j%t4b)k6!_gxmf*f%wx51@p%hw0)!ju1^z*9(k5-y-nhr8^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django-db',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tng-db',
         'USER': 'postgres',
         'PASSWORD': 'gestro123',
-        'HOST': 'django-db.cdyimc8acuid.ap-south-1.rds.amazonaws.com',  # e.g., mydb.xxxxxxxx.us-east-1.rds.amazonaws.com
+        'HOST': 'tng-db.c5s0mwaqw9r0.us-east-1.rds.amazonaws.com',  # e.g., mydb.xxxxxxxx.us-east-1.rds.amazonaws.com
         'PORT': '5432',
     }
 }
