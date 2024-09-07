@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'djangoProject1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tng-db',
+        'NAME': 'tngdb',
         'USER': 'postgres',
         'PASSWORD': 'gestro123',
-        'HOST': 'tng-db.c5s0mwaqw9r0.us-east-1.rds.amazonaws.com',  # e.g., mydb.xxxxxxxx.us-east-1.rds.amazonaws.com
+        'HOST': 'database-1.c5s0mwaqw9r0.us-east-1.rds.amazonaws.com',  # e.g., mydb.xxxxxxxx.us-east-1.rds.amazonaws.com
         'PORT': '5432',
     }
 }
